@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM 1</title>
+</head>
+<body>
+    <div>
+        <div style="margin: 20px;">
+            <input type="checkbox" id="check" style="margin-right: 5px;">Check This.
+            <button id="btn-submit" value="Submit" style="margin-left: 10px;">Submit</button>
+            <button id="btn-reset">Reset</button>
+        </div>
+        <div id="content-show">
+            <h1></h1>
+            <p></p>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Section 2-4, (Case) : Menampilkan text dari value inputan, ke tag yang ber-ID: show
+        let checkbox = document.getElementById('check')
+        let btnShow = document.getElementById('btn-submit')
+        let btnReset = document.getElementById('btn-reset')
+        let show = document.getElementById('content-show')
+
+        btnShow.addEventListener('click', () => {
+            if (checkbox.checked) {
+                show.firstElementChild.textContent = "Halo"
+            } else {
+                show.firstElementChild.textContent = "Klik checkbox nya dulu"
+            }
+        })
+
+        btnReset.addEventListener('click', () => {
+            show.firstElementChild.textContent = "";
+            checkbox.checked = false;
+        })
+   </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JavaScript DOM 3</title>
+	</head>
+	<body>
+		<div id="form-login" style="display: none;">
+			<h1>LOGIN</h1>
+			<form id="sign-in">
+				<label name="email" for="email">Email</label><br />
+				<input name="email" type="text" /><br /><br />
+				<label name="password" for="password">Password</label><br />
+				<input name="password" type="password" />
+				<button id="btn-signIn" type="submit">Submit</button>
+			</form>
+		</div>
+		<div id="form-daftar">
+			<h1>DAFTAR</h1>
+			<form id="sign-up">
+                <label for="name">Nama Lengkap</label><br>
+                <input id="name" type="text"><br><br>
+				<label for="email">Email</label><br />
+				<input id="email" name="email" type="text" /><br /><br />
+				<label for="password">Password</label><br />
+				<input id="password" name="password" type="password" />
+				<button type="submit">Daftar</button>
+			</form>
+		</div>
+
+		<script>
+            // Section 7-8, (case) : membuat form daftar-login
+			let formLogin = document.getElementById("sign-in");
+			let formDaftar = document.getElementById("sign-up");
+			let users = [];
+
+			function getUserDaftar() {
+				let objUser = {};
+                let name = formDaftar.elements["name"].value;
+				let email = formDaftar.elements["email"].value;
+				let password = formDaftar.elements["password"].value;
+				if (name && email && password) {
+					objUser["nama"] = name;
+					objUser["email"] = email;
+					objUser["password"] = password;
+					return objUser;
+				} else {
+					return null;
+				}
+			}
+
+            function getUserLogin() {
+				let objUser = {};
+                let email = formLogin.elements["email"].value;
+				let password = formLogin.elements["password"].value;
+				if (email && password) {
+					objUser["email"] = email;
+					objUser["password"] = password;
+					return objUser;
+				} else {
+					return null;
+				}
+			}
+
+			formLogin.addEventListener("submit", (event) => {
+				let dataUser = getUserLogin()
+                let dataLogin = users.filter((user) => {
+					if (user.email == dataUser.email && user.password == dataUser.password) {
+                        return alert(`halo, ${user.nama}`)
+                    } else {
+                        return alert("username atau password salah")
+                    }
+				});
+                event.preventDefault()
+			});
+
+			formDaftar.addEventListener("submit", (event) => {
+				let getData = getUserDaftar();
+				let formDaftar = document.getElementById("form-daftar");
+                let formLogin = document.getElementById("form-login")
+
+				if (getData !== null) {
+					users.push(getData);
+					formDaftar.style.display = "none";
+                    formLogin.style.display = "block"
+				} else {
+					alert("gagal daftar, harap masukkan email & password dengan benar");
+				}
+				event.preventDefault();
+			});
+		</script>
+	</body>
+</html>

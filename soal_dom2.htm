@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM 2</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Silahkan pilih gambar yang ingin ditampilkan</h2>
+        <button id="btn-cat">Cat</button>
+        <button id="btn-dog">Dog</button>
+    </div>
+    <div class="image">
+    </div>
+
+
+    <script>
+        // Section 4-6, (case) = menampilkan gambar ketika tombol di klik
+        let btnCat = document.querySelector('#btn-cat')
+        let btnDog = document.querySelector('#btn-dog') 
+        
+        btnCat.addEventListener('click', () => {
+            let div = document.querySelector('.image')
+            let img = document.createElement("img")
+            img.id = "gambar"
+            // console.log(div.children.length);
+
+            if (div.children.length >= 1) {
+                let gambar = document.querySelector('#gambar')
+                gambar.setAttribute("src", "./img/kucing.jpg")
+                gambar.style.width = "500px"
+            } else if (div.children.length < 1) {
+                div.appendChild(img)
+                img.setAttribute("src", "./img/kucing.jpg")
+                img.style.width = "500px"
+            }
+        })
+
+        btnDog.addEventListener('click', () => {
+            let div = document.querySelector('.image')
+            let img = document.createElement("img")
+            img.id = "gambar"
+            
+            if (div.children.length >= 1) {
+                let gambar = document.querySelector('#gambar')
+                gambar.setAttribute("src", "./img/dog.jpg")
+                gambar.style.width = "500px"
+            } else if (div.children.length < 1) {
+                div.appendChild(img)
+                img.setAttribute("src", "./img/dog.jpg")
+                img.style.width = "500px"
+            }
+        })
+   </script>
+</body>
+</html>
